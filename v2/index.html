@@ -225,6 +225,17 @@
     .stats span{font-size:12px}
   }
 </style>
+<!-- Meta Pixel: dataset "CIFRAS SITE" (OP 1). La compra (Purchase) la manda la XPag por el servidor. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1541014001116109');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1541014001116109&ev=PageView&noscript=1"></noscript>
 </head>
 <body>
 
@@ -524,7 +535,19 @@ $('#price').textContent = CONFIG.precio;
 $('#cur').textContent = CONFIG.moneda;
 $$('.js-price').forEach(e => e.textContent = CONFIG.precio + ' ' + CONFIG.moneda);
 $('#oldPrice').textContent = CONFIG.precioAntes ? '$' + CONFIG.precioAntes + ' ' + CONFIG.moneda : '';
-if (CONFIG.checkoutUrl) $$('.js-buy').forEach(a => a.href = CONFIG.checkoutUrl);
+// checkout: lleva los UTM y el fbclid del anuncio hasta la XPag
+function checkoutHref(){
+  try {
+    const u = new URL(CONFIG.checkoutUrl), q = new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','src','sck'].forEach(k => { if (q.get(k)) u.searchParams.set(k, q.get(k)); });
+    return u.toString();
+  } catch(e){ return CONFIG.checkoutUrl; }
+}
+if (CONFIG.checkoutUrl) $$('.js-buy').forEach(a => {
+  a.href = checkoutHref();
+  a.addEventListener('click', () => { try { window.fbq && fbq('track','InitiateCheckout',{value:Number(CONFIG.precio),currency:CONFIG.moneda}); } catch(e){} });
+});
+try { window.fbq && fbq('track','ViewContent',{value:Number(CONFIG.precio),currency:CONFIG.moneda,content_name:'Cancionero de Alabanzas'}); } catch(e){}
 $('#year').textContent = new Date().getFullYear();
 
 // ---------- VSL ----------
