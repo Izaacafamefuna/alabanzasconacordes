@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cancionero de Alabanzas con Acordes</title>
+<meta name="description" content="Más de 300 alabanzas en español con acordes y partituras, separadas por instrumento. PDF para celular o para imprimir. Pago en OXXO o SPEI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d0f14; --bg2:#141821; --card:#1a1f2b; --line:#262c3a;
+    --ink:#f4f1ea; --ink2:#b9b5ab; --ink3:#7d7a73;
+    --gold:#e8b04a; --orange:#ec5a24; --green:#22c55e; --green2:#16a34a;
+    --paper:#fbf8f2; --paperInk:#1c1b19;
+    --r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:"Bricolage Grotesque",Inter,sans-serif;line-height:1.08;letter-spacing:-.02em}
+  h2{font-size:clamp(28px,4.6vw,44px);font-weight:800;margin-bottom:14px}
+  h3{font-weight:800}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+  .narrow{max-width:760px}
+  .center{text-align:center}
+  section{padding:76px 0}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  .lead{color:var(--ink2);font-size:18px;max-width:640px;margin:0 auto}
+  .hl{color:var(--gold)}
+  .hidden{display:none!important}
+
+  /* botones */
+  .btn{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:linear-gradient(180deg,var(--green),var(--green2));color:#fff;text-decoration:none;font-weight:800;font-size:19px;letter-spacing:.01em;padding:18px 30px;border-radius:14px;box-shadow:0 10px 30px -8px rgba(34,197,94,.55),inset 0 1px 0 rgba(255,255,255,.25);transition:transform .15s,box-shadow .15s;text-transform:uppercase}
+  .btn small{font-size:12.5px;font-weight:600;text-transform:none;opacity:.92;letter-spacing:0}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px -8px rgba(34,197,94,.65)}
+  .btn-wide{width:100%;max-width:460px}
+  .pulse{animation:pulse 2.2s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 10px 30px -8px rgba(34,197,94,.55),0 0 0 0 rgba(34,197,94,.45)}50%{box-shadow:0 10px 30px -8px rgba(34,197,94,.55),0 0 0 12px rgba(34,197,94,0)}}
+  .safe{color:var(--ink3);font-size:13px;margin-top:12px}
+
+  /* topbar */
+  .topbar{background:var(--gold);color:#1b1404;text-align:center;font-size:13.5px;font-weight:600;padding:9px 16px}
+
+  /* hero */
+  .hero{position:relative;padding:44px 0 64px;background:
+      radial-gradient(900px 500px at 50% -10%,rgba(232,176,74,.16),transparent 60%),
+      radial-gradient(600px 400px at 90% 30%,rgba(236,90,36,.10),transparent 60%),var(--bg)}
+  .hero h1{font-size:clamp(30px,5.4vw,54px);font-weight:800;max-width:900px;margin:0 auto 16px}
+  .hero .lead{margin-bottom:22px}
+  .sound{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink2);background:rgba(255,255,255,.06);border:1px solid var(--line);padding:7px 14px;border-radius:999px;margin-bottom:16px}
+  .sound i{width:8px;height:8px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.6);animation:rec 1.6s infinite}
+  @keyframes rec{50%{box-shadow:0 0 0 7px rgba(239,68,68,0)}}
+
+  /* VSL */
+  .vsl{position:relative;margin:0 auto;border-radius:16px;overflow:hidden;background:#000;border:1px solid #333;box-shadow:0 30px 80px -20px rgba(0,0,0,.8),0 0 0 6px rgba(255,255,255,.03)}
+  .vsl.f169{max-width:820px;aspect-ratio:16/9}
+  .vsl.f916{max-width:380px;aspect-ratio:9/16}
+  .vsl > *{position:absolute;inset:0;width:100%!important;height:100%!important;border:0}
+  .vsl vturb-smartplayer{position:static;display:block}
+  .vsl.is-vturb{aspect-ratio:auto;background:transparent;border:0;box-shadow:none}
+  .vsl.is-vturb > *{position:static}
+  .hero-cta{margin-top:26px}
+  .hero-cta .btn{max-width:520px;width:100%}
+
+  /* mockup (se usa en el hero si no hay video, y en "lo que recibes") */
+  .mock{position:relative;height:440px;max-width:620px;margin:0 auto;perspective:1400px}
+  .mock .pg{position:absolute;width:250px;aspect-ratio:600/776;background:var(--paper);border-radius:4px;overflow:hidden;box-shadow:0 2px 0 #e8e2d5,0 4px 0 #ddd6c7,0 6px 0 #d2cab9,0 28px 50px -12px rgba(0,0,0,.75)}
+  .mock .pg img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .mock .p1{left:6%;top:56px;transform:rotate(-9deg)}
+  .mock .p2{left:24%;top:24px;transform:rotate(-2deg);z-index:2}
+  .mock .p3{left:43%;top:44px;transform:rotate(6deg);z-index:3}
+  .mock .phone{position:absolute;right:2%;bottom:0;z-index:5;width:178px;aspect-ratio:9/19;background:#0b0b0d;border-radius:30px;padding:9px;box-shadow:0 0 0 2px #2b2b30,0 40px 60px -15px rgba(0,0,0,.85);transform:rotate(4deg)}
+  .mock .phone::before{content:"";position:absolute;top:13px;left:50%;transform:translateX(-50%);width:58px;height:16px;background:#0b0b0d;border-radius:12px;z-index:2}
+  .mock .phone .scr{width:100%;height:100%;border-radius:22px;overflow:hidden;background:#fff}
+  .mock .phone .scr img{width:100%;height:auto}
+  .mock.fan{height:400px}
+  .mock.fan .pg{left:50%;top:40px;width:230px;margin-left:-115px}
+  .mock.fan .p1{transform:translateX(-120px) translateY(26px) rotate(-10deg)}
+  .mock.fan .p2{transform:rotate(-1deg);z-index:2}
+  .mock.fan .p3{transform:translateX(120px) translateY(26px) rotate(9deg);z-index:3}
+  @media (max-width:560px){
+    .mock.fan{height:260px}
+    .mock.fan .pg{width:160px;margin-left:-80px;top:20px}
+    .mock.fan .p1{transform:translateX(-82px) translateY(18px) rotate(-10deg)}
+    .mock.fan .p3{transform:translateX(82px) translateY(18px) rotate(9deg)}
+  }
+  .mock .badge{position:absolute;left:0;bottom:22px;z-index:6;background:var(--orange);color:#fff;font-weight:800;font-family:"Bricolage Grotesque";border-radius:14px;padding:12px 16px;line-height:1;box-shadow:0 14px 30px -10px rgba(236,90,36,.7);transform:rotate(-4deg)}
+  .mock .badge b{display:block;font-size:38px}
+  .mock .badge span{font-size:12.5px;font-weight:600;letter-spacing:.04em}
+
+  /* barra de números */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;max-width:760px;margin:44px auto 0}
+  .stats div{background:var(--bg2);padding:18px 10px;text-align:center}
+  .stats b{display:block;font-family:"Bricolage Grotesque";font-size:clamp(26px,4vw,36px);font-weight:800;color:var(--gold);line-height:1.1}
+  .stats span{font-size:13px;color:var(--ink2)}
+
+  /* dolor */
+  .pain{background:var(--bg2)}
+  .qs{display:grid;gap:12px;max-width:760px;margin:30px auto 0;text-align:left}
+  .q{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:16.5px}
+  .q::before{content:"?";flex:none;width:28px;height:28px;border-radius:50%;background:rgba(236,90,36,.15);color:var(--orange);font-weight:800;display:grid;place-items:center}
+  .turn{margin-top:30px;font-family:"Bricolage Grotesque";font-size:clamp(22px,3.4vw,30px);font-weight:800}
+
+  /* lo que recibes */
+  .get-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;margin-top:20px}
+  .items{display:grid;gap:12px}
+  .item{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .item .n{flex:none;width:44px;height:44px;border-radius:12px;background:rgba(232,176,74,.12);display:grid;place-items:center;font-size:22px}
+  .item b{display:block;font-size:16.5px}
+  .item span{color:var(--ink2);font-size:14.5px}
+
+  /* por dentro */
+  .inside{background:linear-gradient(180deg,var(--bg),var(--bg2))}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:26px 0 26px}
+  .tab{background:var(--card);border:1px solid var(--line);color:var(--ink);padding:9px 16px;border-radius:999px;font:600 14.5px Inter;cursor:pointer}
+  .tab.on{background:var(--gold);border-color:var(--gold);color:#1b1404}
+  .viewer{display:grid;grid-template-columns:340px 1fr;gap:34px;align-items:center;max-width:900px;margin:0 auto;text-align:left}
+  .sheet{background:var(--paper);border-radius:6px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.8);transform:rotate(-1.5deg);aspect-ratio:600/776}
+  .sheet img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .viewer h3{font-size:30px;margin-bottom:8px}
+  .viewer .cnt{display:inline-block;background:rgba(34,197,94,.14);color:#4ade80;font-weight:700;font-size:14px;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+  .viewer p{color:var(--ink2)}
+
+  /* buscador */
+  .sbox{max-width:680px;margin:26px auto 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;text-align:left}
+  .sbox input{width:100%;font:16px Inter;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);outline:none}
+  .sbox input:focus{border-color:var(--gold)}
+  .count{font-size:13px;color:var(--ink3);margin:10px 4px}
+  .list{max-height:300px;overflow:auto;display:grid;grid-template-columns:1fr 1fr;gap:2px 16px}
+  .list div{padding:7px 4px;border-bottom:1px solid var(--line);font-size:14.5px}
+  .list i{font-style:normal;color:var(--ink3);font-size:12px;margin-right:8px}
+  .list .empty{grid-column:1/-1;color:var(--ink2)}
+
+  /* avaliaciones */
+  .rv-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:26px 16px 8px;max-width:1180px;margin:0 auto}
+  .rv{flex:0 0 280px;scroll-snap-align:center;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px -18px rgba(0,0,0,.7)}
+  .rv-hint{text-align:center;color:var(--ink3);font-size:13px;margin-top:8px}
+  .vt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:900px;margin:30px auto 0}
+  .vt{border-radius:14px;overflow:hidden;background:#000;aspect-ratio:9/16;border:1px solid var(--line);position:relative}
+  .vt > *{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .proof{margin-top:40px}
+  .proof b{font-family:"Bricolage Grotesque";font-size:clamp(46px,8vw,72px);font-weight:800;color:var(--gold);line-height:1}
+  .proof p{font-size:18px;font-weight:600;margin-top:6px}
+  .proof small{color:var(--ink3)}
+
+  /* pasos */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px 20px;text-align:left}
+  .step .num{width:38px;height:38px;border-radius:50%;background:var(--gold);color:#1b1404;font-weight:800;display:grid;place-items:center;margin-bottom:12px}
+  .step b{display:block;font-size:17px;margin-bottom:4px}
+  .step span{color:var(--ink2);font-size:15px}
+
+  /* para quien */
+  .who{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+  .who ul{list-style:none;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+  .who h3{font-size:20px;margin-bottom:12px}
+  .who li{padding:7px 0 7px 30px;position:relative;color:var(--ink2)}
+  .who li::before{content:"✓";position:absolute;left:0;top:6px;color:var(--green);font-weight:800}
+  .who .no li::before{content:"✕";color:#f87171}
+
+  /* oferta */
+  .offer{background:radial-gradient(700px 400px at 50% 0%,rgba(232,176,74,.14),transparent 70%),var(--bg2)}
+  .ocard{max-width:560px;margin:28px auto 0;background:var(--paper);color:var(--paperInk);border-radius:24px;padding:30px 26px;box-shadow:0 40px 90px -30px rgba(0,0,0,.9);border:3px solid var(--gold);text-align:left;position:relative}
+  .ocard .tag{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-weight:800;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:999px;white-space:nowrap}
+  .ocard .mini{display:flex;justify-content:center;gap:8px;margin:6px 0 18px}
+  .ocard .mini img{width:76px;border-radius:4px;box-shadow:0 8px 18px -8px rgba(0,0,0,.5)}
+  .ocard .mini img:nth-child(1){transform:rotate(-6deg)} .ocard .mini img:nth-child(3){transform:rotate(6deg)}
+  .ocard ul{list-style:none;margin-bottom:18px}
+  .ocard li{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed #ddd5c4;font-size:15.5px}
+  .ocard li::before{content:"✓";color:var(--green2);font-weight:800}
+  .price{text-align:center;margin:8px 0 18px}
+  .price .old{color:#8a857b;text-decoration:line-through;font-size:18px;min-height:0}
+  .price .now{font-family:"Bricolage Grotesque";font-size:64px;font-weight:800;line-height:1}
+  .price .now small{font-size:26px}
+  .price .once{color:#6b665c;font-size:14px;margin-top:4px}
+  .ocard .btn{width:100%}
+  .pay{display:flex;justify-content:center;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .pay span{font-size:12.5px;font-weight:700;border:1px solid #d9d1c0;border-radius:8px;padding:5px 10px;color:#4b473f}
+
+  /* garantia */
+  .guar{display:flex;gap:26px;align-items:center;max-width:760px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+  .seal{flex:none;width:118px;height:118px;border-radius:50%;background:conic-gradient(var(--gold),#f6d58c,var(--gold));display:grid;place-items:center;color:#1b1404;text-align:center}
+  .seal div{width:98px;height:98px;border-radius:50%;background:var(--gold);display:grid;place-content:center;border:2px dashed rgba(27,20,4,.35)}
+  .seal b{font-family:"Bricolage Grotesque";font-size:40px;line-height:1}
+  .seal span{font-size:10px;font-weight:800;letter-spacing:.06em}
+  .guar p{color:var(--ink2)}
+
+  /* faq */
+  .faq{max-width:760px;margin:26px auto 0}
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;padding:0 18px}
+  .faq summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  .faq summary::after{content:"+";color:var(--gold);font-size:22px;line-height:1}
+  .faq details[open] summary::after{content:"–"}
+  .faq p{color:var(--ink2);padding-bottom:16px}
+
+  footer{text-align:center;color:var(--ink3);font-size:13px;padding:40px 16px 110px;border-top:1px solid var(--line)}
+
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;align-items:center;justify-content:space-between;gap:12px;background:rgba(13,15,20,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px;transform:translateY(110%);transition:transform .25s}
+  .sticky.show{transform:none}
+  .sticky .p{font-size:12px;color:var(--ink2);line-height:1.2}
+  .sticky .p b{display:block;font-size:20px;color:var(--ink)}
+  .sticky .btn{padding:13px 20px;font-size:15px}
+
+  @media (max-width:860px){
+    section{padding:58px 0}
+    .get-grid,.viewer{grid-template-columns:1fr}
+    .viewer{text-align:center}
+    .sheet{max-width:300px;margin:0 auto}
+    .steps,.who{grid-template-columns:1fr}
+    .sticky{display:flex}
+  }
+  @media (max-width:560px){
+    .mock{height:340px}
+    .mock .pg{width:170px}
+    .mock .p1{left:0;top:40px} .mock .p2{left:18%;top:14px} .mock .p3{left:36%;top:34px}
+    .mock .phone{width:128px;border-radius:24px;padding:7px}
+    .mock .phone::before{width:44px;height:12px;top:10px}
+    .mock .phone .scr{border-radius:18px}
+    .mock .badge{bottom:10px;padding:9px 12px} .mock .badge b{font-size:28px}
+    .list{grid-template-columns:1fr}
+    .guar{flex-direction:column;text-align:center}
+    .stats span{font-size:12px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">📩 Llega a tu correo al instante · Pago en <b>OXXO</b> o <b>SPEI</b> · Garantía de 7 días</div>
+
+<!-- ================= HERO + VSL ================= -->
+<header class="hero">
+  <div class="wrap center">
+    <span class="eyebrow">Para músicos de iglesia · Edición México</span>
+    <h1>Toca las alabanzas del domingo <span class="hl">sin perder el ensayo buscando acordes</span></h1>
+    <p class="lead">Más de 300 alabanzas en español con acordes y partituras, separadas por instrumento. Cada músico del grupo abre su carpeta y toca.</p>
+
+    <!-- Aviso de sonido: aparece solo si hay video -->
+    <div class="sound js-if-video hidden"><i></i> Activa el sonido y mira el video completo</div>
+
+    <!-- ===== VIDEO VTURB: pegar el código completo que da VTurb ENTRE las dos líneas de abajo =====
+         (el <vturb-smartplayer ...></vturb-smartplayer> y el <script>...</script>, tal cual viene).
+         Para YouTube / mp4 / otro player, dejar esto vacío y usar CONFIG.vsl al final de la página. -->
+    <template id="codigoVturb">
+<!-- PEGAR AQUÍ EL CÓDIGO DE VTURB -->
+    </template>
+    <!-- ===== fin del código VTurb ===== -->
+
+    <div id="vslBox" class="vsl f169 hidden"></div>
+
+    <!-- Si no hay video configurado, se muestra el mockup del producto en su lugar -->
+    <div id="heroMock" class="mock" aria-hidden="true">
+      <div class="pg p1"><img src="img/violin.jpg" alt=""></div>
+      <div class="pg p2"><img src="img/capa-mexico.jpg" alt=""></div>
+      <div class="pg p3"><img src="img/sin-cejilla.jpg" alt=""></div>
+      <div class="phone"><div class="scr"><img src="img/guitarra.jpg" alt=""></div></div>
+      <div class="badge"><b>300+</b><span>ALABANZAS</span></div>
+    </div>
+
+    <!-- Botón bajo el video: con CONFIG.vsl.revelarEn > 0 aparece en ese segundo del video -->
+    <div class="hero-cta js-after">
+      <a class="btn pulse js-buy" href="#oferta">Quiero mi cancionero <small>Pago único de $<span class="js-price"></span> · descarga inmediata</small></a>
+      <p class="safe">🔒 Pago seguro · OXXO o SPEI · PDF para celular o para imprimir</p>
+    </div>
+
+    <div class="stats">
+      <div><b>300+</b><span>alabanzas en español</span></div>
+      <div><b>11</b><span>carpetas por instrumento</span></div>
+      <div><b>+2.000</b><span>músicos ya lo tienen</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- Todo lo que tenga "js-after" se oculta hasta el pitch (solo si CONFIG.vsl.revelarEn > 0) -->
+<main class="js-after">
+
+<!-- ================= DOLOR ================= -->
+<section class="pain">
+  <div class="wrap center">
+    <span class="eyebrow">¿Te suena familiar?</span>
+    <h2>El ensayo se va en buscar acordes, no en tocar</h2>
+    <div class="qs">
+      <div class="q">¿Pasas la semana buscando canción por canción en internet, y ninguna página trae la letra y los acordes completos?</div>
+      <div class="q">¿El guitarrista sacó una versión y el tecladista otra, y el grupo no suena junto?</div>
+      <div class="q">¿Cambian la alabanza diez minutos antes del culto y tú no tienes la cifra?</div>
+      <div class="q">¿Tocas violín, flauta o bajo y casi nunca encuentras tu parte en español?</div>
+    </div>
+    <p class="turn">Con este cancionero, <span class="hl">todo el grupo toca de la misma hoja.</span></p>
+  </div>
+</section>
+
+<!-- ================= LO QUE RECIBES ================= -->
+<section>
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Lo que recibes</span>
+      <h2>Todo el repertorio de la iglesia, en un solo lugar</h2>
+    </div>
+    <div class="get-grid">
+      <div class="mock fan" aria-hidden="true">
+        <div class="pg p1"><img src="img/piano.jpg" alt=""></div>
+        <div class="pg p2"><img src="img/teclado.jpg" alt="" loading="lazy"></div>
+        <div class="pg p3"><img src="img/indice.jpg" alt="" loading="lazy"></div>
+      </div>
+      <div class="items">
+        <div class="item"><div class="n">🎸</div><div><b>202 alabanzas por instrumento</b><span>Carpetas de guitarra, teclado y ukulele, con los acordes sobre la letra.</span></div></div>
+        <div class="item"><div class="n">🎻</div><div><b>Partituras y transcripciones</b><span>Violín (45), piano (33), flauta (30), bajo (22), y también trompeta, armónica y saxofón.</span></div></div>
+        <div class="item"><div class="n">📗</div><div><b>Cancionero Edición México</b><span>122 cifras más para practicar canción por canción, con guía para evitar la cejilla.</span></div></div>
+        <div class="item"><div class="n">🎄</div><div><b>Cantos de Navidad</b><span>Noche de paz, Campana sobre campana, Burrito sabanero y más, para diciembre.</span></div></div>
+        <div class="item"><div class="n">📑</div><div><b>Índice para encontrar todo rápido</b><span>Cada alabanza con su número y en qué carpetas está.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POR DENTRO (páginas reales) ================= -->
+<section class="inside">
+  <div class="wrap center">
+    <span class="eyebrow">Míralo por dentro</span>
+    <h2>Así se ve cada instrumento</h2>
+    <p class="lead">Estas son páginas reales del material. Toca un instrumento para verlo.</p>
+    <div class="tabs" id="tabs"></div>
+    <div class="viewer">
+      <div class="sheet"><img id="vImg" src="img/guitarra.jpg" alt="Página de ejemplo del cancionero"></div>
+      <div>
+        <h3 id="vTitle"></h3>
+        <span class="cnt" id="vCount"></span>
+        <p id="vText"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BUSCADOR ================= -->
+<section>
+  <div class="wrap center">
+    <span class="eyebrow">Revisa antes de comprar</span>
+    <h2>Busca tu alabanza en la lista</h2>
+    <p class="lead">La lista completa de alabanzas que vienen en el cancionero.</p>
+    <div class="sbox">
+      <input id="q" type="search" placeholder="Escribe una alabanza… ej. Cuan Grande Es Dios" autocomplete="off">
+      <div class="count" id="count"></div>
+      <div class="list" id="list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+<section class="pain">
+  <div class="wrap center">
+    <span class="eyebrow">Mensajes de nuestros clientes</span>
+    <h2>Lo que dicen los músicos</h2>
+    <p class="lead">Mensajes que nos mandaron por WhatsApp después de recibir el material.</p>
+    <!-- Testimonios en video: se configuran en CONFIG.testimoniosVideo. Si está vacío, este bloque no aparece. -->
+    <div class="vt-grid hidden" id="vtGrid"></div>
+  </div>
+  <div class="rv-track">
+    <figure class="rv"><img src="../img/avaliacao-01.jpg" alt="Cliente: ya usé las cifras en el ensayo del domingo" loading="lazy" width="720"></figure>
+    <figure class="rv"><img src="../img/avaliacao-02.jpg" alt="Cliente que está aprendiendo guitarra: los acordes vienen claritos" loading="lazy" width="720"></figure>
+    <figure class="rv"><img src="../img/avaliacao-03.jpg" alt="Tecladista: qué bueno que viene separado por instrumento" loading="lazy" width="720"></figure>
+    <figure class="rv"><img src="../img/avaliacao-04.jpg" alt="Líder de alabanza: ahora todos ensayamos con la misma versión" loading="lazy" width="720"></figure>
+    <figure class="rv"><img src="../img/avaliacao-05.jpg" alt="Bajista: aquí vienen transcripciones para bajo en español" loading="lazy" width="720"></figure>
+    <figure class="rv"><img src="../img/avaliacao-06.jpg" alt="Violinista: ya estoy practicando Noche de paz" loading="lazy" width="720"></figure>
+    <figure class="rv"><img src="../img/avaliacao-07.jpg" alt="Cliente: le regalé el material a mi papá" loading="lazy" width="720"></figure>
+    <figure class="rv"><img src="../img/avaliacao-08.jpg" alt="Cliente: llegó todo bien" loading="lazy" width="720"></figure>
+    <figure class="rv"><img src="../img/avaliacao-09.jpg" alt="Cliente: pagué por OXXO, sí vale la pena" loading="lazy" width="720"></figure>
+    <figure class="rv"><img src="../img/avaliacao-10.jpg" alt="Cliente: muy ordenado el material" loading="lazy" width="720"></figure>
+  </div>
+  <p class="rv-hint">Desliza para ver más →</p>
+  <!-- número real: 2.315 ventas de Cifras MX en Leona al 2026-11-24 -->
+  <div class="wrap center proof">
+    <b>+2.000</b>
+    <p>músicos de iglesia ya recibieron nuestras cifras</p>
+    <small>Ventas por WhatsApp en todo México desde octubre de 2026</small>
+  </div>
+</section>
+
+<!-- ================= CÓMO FUNCIONA ================= -->
+<section>
+  <div class="wrap center">
+    <span class="eyebrow">Así de fácil</span>
+    <h2>En 1 minuto lo tienes en tu correo</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><b>Haz tu pago</b><span>En efectivo en OXXO o por transferencia SPEI.</span></div>
+      <div class="step"><div class="num">2</div><b>Recibe el enlace</b><span>Al confirmarse el pago te llega al correo el enlace de descarga.</span></div>
+      <div class="step"><div class="num">3</div><b>Abre tu carpeta y toca</b><span>En el celular o impreso, listo para el próximo ensayo.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARA QUIÉN ================= -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="center"><h2>¿Es para mí?</h2></div>
+    <div class="who">
+      <ul><h3>Sí, si…</h3>
+        <li>Tocas en la alabanza de tu iglesia o quieres empezar a servir</li>
+        <li>Diriges el grupo y quieres que todos toquen la misma versión</li>
+        <li>Practicas en casa y te cansaste de buscar canción por canción</li>
+        <li>Quieres todo en un solo lugar, en el celular o impreso</li>
+      </ul>
+      <ul class="no"><h3>No, si…</h3>
+        <li>Buscas un curso para aprender a tocar desde cero</li>
+        <li>Buscas un libro impreso que llegue a tu casa (este es digital)</li>
+        <li>Buscas música en otro idioma (todo está en español)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFERTA ================= -->
+<section class="offer" id="oferta">
+  <div class="wrap center">
+    <span class="eyebrow">Todo incluido</span>
+    <h2>Un solo pago, tuyo para siempre</h2>
+    <div class="ocard">
+      <div class="tag">Acceso inmediato</div>
+      <div class="mini" aria-hidden="true">
+        <img src="img/violin.jpg" alt="" loading="lazy"><img src="img/capa-mexico.jpg" alt="" loading="lazy"><img src="img/guitarra.jpg" alt="" loading="lazy">
+      </div>
+      <ul>
+        <li>Más de 300 alabanzas con letra y acordes</li>
+        <li>202 en carpetas de guitarra, teclado y ukulele</li>
+        <li>Partituras para violín, piano, flauta, bajo y más</li>
+        <li>Cancionero Edición México (122 cifras)</li>
+        <li>Cantos de Navidad</li>
+        <li>Índice por instrumento</li>
+      </ul>
+      <div class="price">
+        <div class="old" id="oldPrice"></div>
+        <div class="now"><small>$</small><span id="price"></span> <small id="cur"></small></div>
+        <div class="once">Pago único · sin mensualidades</div>
+      </div>
+      <a class="btn pulse js-buy" href="#oferta">Comprar ahora <small>Descarga inmediata en tu correo</small></a>
+      <div class="pay"><span>OXXO</span><span>SPEI</span><span>🔒 Pago seguro</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GARANTÍA ================= -->
+<section style="padding-top:0" class="offer">
+  <div class="wrap">
+    <div class="guar">
+      <div class="seal"><div><b>7</b><span>DÍAS DE<br>GARANTÍA</span></div></div>
+      <div>
+        <h3 style="font-size:24px;margin-bottom:6px">Pruébalo sin riesgo</h3>
+        <p>Descárgalo, ábrelo y úsalo en tu próximo ensayo. Si no es lo que esperabas, escríbenos dentro de los 7 días y te devolvemos tu dinero completo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section>
+  <div class="wrap">
+    <div class="center"><h2>Preguntas frecuentes</h2></div>
+    <div class="faq">
+      <details><summary>¿Es un libro físico o digital?</summary><p>Es digital, en PDF. Lo recibes en tu correo para descargarlo. Si quieres, lo puedes imprimir.</p></details>
+      <details><summary>¿Sirve si toco teclado y no guitarra?</summary><p>Sí. Todas las alabanzas traen los acordes sobre la letra, que sirven para guitarra o teclado. Además, 202 de ellas vienen en carpetas separadas para guitarra, teclado y ukulele.</p></details>
+      <details><summary>¿Necesito saber mucho de música?</summary><p>No. Si ya sabes los acordes básicos, puedes seguir las cifras. Las partituras de violín, piano y flauta son para quien ya lee música.</p></details>
+      <details><summary>¿Cómo recibo el material?</summary><p>Al confirmar tu pago te llega al correo el cancionero (un archivo ZIP con todas las carpetas). Si no lo ves en un par de minutos, revisa la carpeta de spam o escríbenos.</p></details>
+      <details><summary>¿Puedo pagar en OXXO?</summary><p>Sí. Puedes pagar en efectivo en OXXO o por transferencia SPEI. Con OXXO, el cancionero llega a tu correo en cuanto se confirma el pago.</p></details>
+      <details><summary>¿Es un pago mensual?</summary><p>No. Es un pago único y el material es tuyo para siempre.</p></details>
+      <details><summary>¿Y si no me gusta?</summary><p>Tienes 7 días de garantía. Nos escribes y te devolvemos tu dinero.</p></details>
+    </div>
+    <div class="center" style="margin-top:30px"><a class="btn btn-wide js-buy" href="#oferta">Quiero mi cancionero</a></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Material digital para uso personal y de tu grupo de alabanza.<br>
+  <span id="year"></span> · Todos los derechos reservados.
+</footer>
+
+<div class="sticky js-after" id="sticky">
+  <div class="p">Pago único<b>$<span class="js-price"></span></b></div>
+  <a class="btn js-buy" href="#oferta">Comprar ahora</a>
+</div>
+
+<script>
+/* =====================================================================
+   CONFIGURAR AQUÍ  (no hace falta tocar nada más de la página)
+   ===================================================================== */
+const CONFIG = {
+  precio: "199",
+  precioAntes: "",          // precio tachado: solo si fue un precio real ("" = no se muestra)
+  moneda: "MXN",
+  checkoutUrl: "https://xpag.global/pay/dj7hUD84",   // link de pago XPag (SPEI y OXXO)
+
+  /* ---------- VSL ----------
+     tipo:
+       ""        -> sin video (se muestra el mockup del producto; la página funciona igual)
+       "vturb"   -> el código de VTurb se pega en el bloque <template id="codigoVturb"> (arriba, en el HERO)
+       "youtube" -> pegar en "url" el link del video (youtube.com/watch?v=... o youtu.be/...)
+       "mp4"     -> pegar en "url" el link directo del .mp4 (y opcional "poster" con una imagen)
+       "iframe"  -> pegar en "url" el link de embed de otro player (Panda, Vimeo, Bunny, etc.)
+     formato:   "16:9" (horizontal) o "9:16" (vertical)  — no aplica a VTurb, que tiene su propio tamaño
+     revelarEn: segundo del video en que aparecen el botón y el resto de la página (el pitch).
+                0 = todo visible desde el inicio (recomendado hasta tener el video aprobado).        */
+  vsl: {
+    tipo: "",
+    url: "",
+    poster: "",
+    formato: "16:9",
+    revelarEn: 0
+  },
+
+  /* Testimonios en video (opcional): lista de links de YouTube/mp4 o embeds. Vacío = no aparece. */
+  testimoniosVideo: []
+};
+
+/* ===================== no editar debajo de esta línea ===================== */
+const SONGS = [["001", "A Danzar"], ["002", "A Dios Sea La Gloria"], ["003", "Abba"], ["004", "Abre Mis Ojos"], ["005", "¿Acaso no lo saben?"], ["006", "Agnus Dei"], ["007", "Agradecido Estoy"], ["008", "Al Estar Ante Tí"], ["009", "Al Estar Aquí"], ["010", "Al Final"], ["011", "Al Que Esta Sentado en el Trono"], ["012", "Alaba"], ["013", "Alaba a Dios"], ["014", "Aleluya"], ["015", "Alfa y omega"], ["016", "Algo está pasando"], ["017", "Alma Misionera"], ["018", "Amado de Mi Alma"], ["019", "Amor Sin Condición"], ["020", "Amor temerario"], ["021", "Ángel del Amor"], ["022", "Ante Ti"], ["023", "Aparto Todo"], ["024", "Aquieta mi alma"], ["025", "Arde otra vez"], ["026", "Atrae Mi Corazón"], ["027", "Aun sin entender"], ["028", "Avívanos / La Tierra Clama"], ["029", "Ayúdame a mejorar"], ["030", "Babel"], ["031", "Bautizados En Fuego"], ["032", "Bendito Jesús"], ["033", "Bienvenido Espíritu Santo"], ["034", "Binikini"], ["035", "Bueno es alabar"], ["036", "Burrito Sabanero"], ["037", "Cambiare mi tristeza"], ["038", "Camino en el desierto"], ["039", "Campana Sobre Campana"], ["040", "Caña trillada"], ["041", "Canción del Apocalipsis"], ["042", "Cara a Cara"], ["043", "Cerca De Ti"], ["044", "Cielo En La Tierra"], ["046", "Como David"], ["047", "Como Dijiste"], ["048", "Como en el Cielo (Here as in Heaven)"], ["049", "Cómo No Voy a Creer"], ["050", "Confío En Dios"], ["051", "Con mucha alabanza"], ["052", "Creere"], ["053", "Creo En Ti"], ["054", "Cristo Yo Te Amo"], ["055", "Cuan Grande Es Dios"], ["056", "Cuando Él viene"], ["057", "Cuando llegue el mal"], ["058", "Cuán grande eres Tú"], ["059", "Dame a Cristo"], ["060", "Dame De Beber"], ["061", "Dame Tus Ojos"], ["062", "Dame un corazón conforme a tu corazón"], ["063", "Danzando"], ["064", "De Gloria en Gloria"], ["065", "De Tal Manera"], ["066", "De adentro hacia afuera"], ["067", "Declaro a Cristo"], ["068", "Deja arder"], ["069", "Derramo El Perfume"], ["070", "Desde Mi Interior"], ["071", "Deseable"], ["072", "Deseo Eterno"], ["073", "Despierta"], ["074", "Digno"], ["075", "Digno de Adorar"], ["076", "Digno Es El Señor"], ["077", "Digno y Santo"], ["078", "Dios De Avivamiento"], ["079", "Dios de Generaciones"], ["080", "Dios De Lo Imposible"], ["081", "Dios El Más Grande"], ["082", "Dios Háblame"], ["083", "Dios imparable"], ["084", "Dios Incomparable"], ["085", "Dios Poderoso"], ["086", "Dios de mi vida"], ["087", "Dios está aquí"], ["088", "Dios me ama"], ["089", "Dios proveerá"], ["090", "Dulce como la miel"], ["091", "El Dios Que Adoramos"], ["092", "El Eco De Su Voz"], ["093", "El Gran Yo Soy"], ["094", "El Nombre De Jesús"], ["095", "El Nos Ama"], ["096", "El Poderoso de Israel"], ["097", "(Tu) El Único Rey"], ["098", "El Carpintero"], ["099", "El día que será para siempre"], ["100", "El Escudo"], ["101", "El fuego nunca duerme"], ["102", "El gran pintor"], ["103", "El Himno"], ["104", "El lugar"], ["105", "El mensaje de la cruz"], ["106", "El nombre de Jesús"], ["107", "Él viene"], ["108", "En El Nombre de Jesús"], ["109", "En Esto Creo (El Credo)"], ["110", "En la Cruz"], ["111", "En Totalidad a Ti"], ["112", "En Tu Luz"], ["113", "En Tu Presencia"], ["114", "Enamórame"], ["115", "Enciende Una Luz"], ["116", "Enciende de nuevo"], ["117", "En Tus brazos"], ["118", "Eres fiel"], ["119", "Eres Mi Amigo Fiel"], ["120", "Eres Todopoderoso"], ["121", "Es Él"], ["122", "Espíritu Santo"], ["123", "Espíritu Santo, eres bienvenido aquí"], ["124", "Espontáneo + Volvamos al inicio"], ["125", "Esta Cayendo"], ["126", "Estar Contigo"], ["127", "Ester"], ["128", "Examíname"], ["129", "Examíname, úsame"], ["130", "Fall in Love with You"], ["131", "Fiel"], ["132", "Fiel a mí"], ["133", "Fiesta"], ["134", "Fiesta en el desierto (la la la)"], ["135", "Fue en la cruz"], ["136", "Fuego por Dios (Aguas)"], ["137", "Galileo"], ["138", "Glorioso"], ["139", "Glorioso Día"], ["140", "Gracia Sublime Es"], ["141", "Gracias - Tu Fidelidad"], ["142", "Grande Y Fuerte"], ["143", "Grande es el Señor"], ["144", "Grandes cosas"], ["145", "Hay Libertad"], ["146", "Hay Momentos"], ["147", "Hay Un Rey"], ["148", "Hay Una Uncion Aqui"], ["149", "Hay un lugar"], ["150", "Haz morada"], ["151", "Haz un milagro en mí"], ["152", "Hechos 2"], ["153", "Hermoso Momento (Sesión Acústica)"], ["154", "Hermoso Nombre"], ["155", "Hey, Padre"], ["156", "Hijo del Dios Vivo"], ["157", "Himno De Victoria"], ["158", "Historia escrita por el dedo de Dios"], ["159", "Hola, Jesús"], ["160", "Hosanna"], ["161", "Huracán"], ["162", "Incomprensible Amor"], ["163", "Indudablemente"], ["164", "Inexplicable"], ["165", "Jesucristo Basta"], ["166", "Jesús Es El Centro"], ["167", "Jesús Mi Fiel Amigo"], ["168", "Jesús, el Hijo de Dios"], ["169", "Júbilo"], ["170", "La Bendición (The Blessing)"], ["171", "La Bondad de Dios"], ["172", "La Casa de Dios"], ["173", "La Cosecha"], ["174", "La Niña de Tus Ojos"], ["175", "La Sunamita"], ["176", "La Tierra Canta"], ["177", "Lázaro"], ["178", "Levanto Mis Manos"], ["179", "Libérame de mí"], ["180", "Lléname"], ["181", "Llévame a la cruz"], ["182", "Lo Harás Otra Vez (Do It Again)"], ["183", "Lo Llenaste Todo"], ["184", "Lo Único Que Quiero"], ["185", "Los Brazos De Papá"], ["186", "Los Muros Caerán"], ["187", "Los Peces En El Río"], ["188", "Lugar Secreto"], ["189", "Maranata"], ["190", "Marca de la Promesa"], ["191", "Marcas de lo que fue"], ["192", "María pasa al frente"], ["193", "Más Que Nunca"], ["194", "Más blanco que la nieve"], ["195", "Me sostendrá"], ["196", "Me ama"], ["197", "Mesias"], ["198", "Mi Gozo"], ["199", "Mi Jesús, Mi Amado"], ["200", "Mi barquito"], ["201", "Mi morada"], ["202", "Mírenlo"], ["203", "Nada Es Imposible"], ["204", "Nada más que la sangre"], ["205", "No Hay Lugar Más Alto"], ["206", "No Hay Otro Nombre"], ["207", "No Me Soltarás"], ["208", "Noche de paz"], ["209", "Noche de paz"], ["210", "Nunca se trató de nosotros"], ["211", "Océanos (Donde Mis Pies Pueden Fallar)"], ["212", "Oh, qué hermoso es ese nombre"], ["213", "¡Oh, si rasgaras los cielos!"], ["214", "Oración por la familia"], ["215", "Pablo Y Silas"], ["216", "Para que entre el Rey"], ["217", "Para siempre"], ["218", "Perfume a Tus Pies"], ["219", "Pescador de Hombres"], ["220", "Poderoso Dios"], ["221", "Preciosa Sangre"], ["222", "Purifícame"], ["223", "Que Ruja el León"], ["224", "Que Se Abra El Cielo"], ["225", "Que Se Llene Tu Casa"], ["226", "Que Sería de Mi"], ["227", "Que Vuelva Lo Santo Al Altar"], ["228", "¿Qué amor es este?"], ["229", "Quebrantado"], ["230", "Que caiga fuego"], ["231", "Que Él crezca"], ["232", "Que se abran los cielos"], ["233", "Quién Más [Live]"], ["234", "Quién Podrá"], ["235", "Quiero Arder En Fuego"], ["236", "Quiero Conocer a Jesús (Yeshua) - Nuestro Dios"], ["237", "Quiero Levantar Mis Manos"], ["238", "Quiero conocer a Jesús"], ["239", "Quiero ser como un niño"], ["240", "Renuévame"], ["241", "Rey"], ["242", "Rey de Reyes"], ["243", "SALMO 23 feat. Marco Barrientos"], ["244", "Santa La Noche"], ["245", "Santo Es El Que Vive"], ["246", "Santo por siempre"], ["247", "Se enciende una vela"], ["248", "Sé que viene"], ["249", "Ser transformado"], ["250", "Si Tengo a Ti (Deseo Eterno)"], ["251", "Si Tu Presencia Conmigo No Va"], ["252", "Siento fluir"], ["253", "Sobre Él"], ["254", "Sobreviví"], ["255", "Socorro"], ["256", "Solo Hay Uno"], ["257", "Solo quien tiene raíces"], ["258", "Solo Tú eres Santo"], ["259", "Somos El Pueblo de Dios"], ["260", "Soy casa"], ["261", "Suelto"], ["262", "Sumérgeme"], ["263", "Supe Que Me Amabas"], ["264", "Tal Como Soy"], ["265", "Te Alabare Mi Buen Jesus"], ["266", "Te Doy Gloria"], ["267", "Te agradezco"], ["268", "Te alabaré"], ["269", "Temprano Yo Te Buscaré"], ["270", "Tengo Hambre de Tí"], ["271", "Te veo en todo"], ["272", "Tócame de nuevo"], ["273", "Toda lengua y toda nación"], ["274", "Todo Va Estar Bien"], ["275", "Todo tiene que ver con Él"], ["276", "Tomalo"], ["277", "Tu Amor No Tiene Fin (Reprise) [En Vivo]"], ["278", "Tú Estás Aquí"], ["279", "Tu Mirada"], ["280", "Tu Poeta"], ["281", "Tu alegría es mi fuerza"], ["282", "Tu amor no falla"], ["283", "Tú dices"], ["284", "Tumbas a Jardines (Graves Into Gardens)"], ["285", "Tú me llevas al desierto"], ["286", "Tu Reino"], ["287", "Tus Cuerdas De Amor"], ["288", "Tus aguas"], ["289", "Tu Santo nombre"], ["290", "Un Hogar Sin Ti"], ["291", "Un Viaje Largo"], ["292", "Una cosa"], ["293", "Unción En El Aire"], ["294", "Vale La Pena"], ["295", "Vamos a Cantar"], ["296", "Vasijas Rotas (Sublime Gracia)"], ["297", "Ven Espíritu Ven"], ["298", "Ven, Te Necesito"], ["299", "Victoria en el desierto"], ["300", "Vine a Adorarte"], ["301", "Vine a adorarte"], ["302", "Vuelvo a Casa [En Vivo]"], ["303", "Way Maker (Versión En Español)"], ["304", "Ya No Soy Esclavo"], ["305", "Yahweh Se Manifestará"], ["306", "Ya viene la Navidad"], ["307", "Yeshua"], ["308", "Yo me rindo a el"], ["309", "Yo Quiero Mas de Ti"], ["310", "Yo te Busco"], ["311", "Yo Te Extrañaré"], ["312", "Yo Ya No Soy El Mismo"], ["313", "Yo cuido de ti"], ["314", "Yo elijo a Dios"], ["315", "Yo navegaré"]];
+
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+
+// precio y checkout
+$('#price').textContent = CONFIG.precio;
+$('#cur').textContent = CONFIG.moneda;
+$$('.js-price').forEach(e => e.textContent = CONFIG.precio + ' ' + CONFIG.moneda);
+$('#oldPrice').textContent = CONFIG.precioAntes ? '$' + CONFIG.precioAntes + ' ' + CONFIG.moneda : '';
+if (CONFIG.checkoutUrl) $$('.js-buy').forEach(a => a.href = CONFIG.checkoutUrl);
+$('#year').textContent = new Date().getFullYear();
+
+// ---------- VSL ----------
+function ytId(u){ const m = String(u).match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : ''; }
+function embedHTML(t, url, poster){
+  if (t === 'youtube'){ const id = ytId(url); return id ? `<iframe src="https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="Video"></iframe>` : ''; }
+  if (t === 'mp4') return `<video src="${url}" ${poster ? `poster="${poster}"` : ''} controls playsinline preload="metadata"></video>`;
+  if (t === 'iframe') return `<iframe src="${url}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen title="Video"></iframe>`;
+  return '';
+}
+const V = CONFIG.vsl || {}, box = $('#vslBox');
+let hasVideo = false;
+try {
+  const tpl = document.getElementById('codigoVturb');
+  const vtNodes = tpl ? [...tpl.content.childNodes].filter(n => n.nodeType === 1) : [];
+  if (V.tipo === 'vturb' && vtNodes.length){
+    box.classList.add('is-vturb');
+    // los <script> copiados de un <template> no se ejecutan solos: se recrean
+    vtNodes.forEach(n => {
+      if (n.nodeName === 'SCRIPT'){ const s = document.createElement('script'); [...n.attributes].forEach(a => s.setAttribute(a.name, a.value)); s.text = n.text; box.appendChild(s); }
+      else box.appendChild(document.importNode(n, true));
+    });
+    hasVideo = true;
+  } else if (['youtube','mp4','iframe'].includes(V.tipo) && V.url){
+    const html = embedHTML(V.tipo, V.url, V.poster);
+    if (html){ box.innerHTML = html; box.classList.toggle('f916', V.formato === '9:16'); box.classList.toggle('f169', V.formato !== '9:16'); hasVideo = true; }
+  }
+} catch(e){ console.warn('VSL', e); hasVideo = false; }
+
+if (hasVideo){
+  box.classList.remove('hidden');
+  $('#heroMock').classList.add('hidden');
+  $$('.js-if-video').forEach(e => e.classList.remove('hidden'));
+}
+
+// revelar el resto de la página en el pitch
+const KEY = 'cancionero_revelado';
+let revealed = false, stickySet = false;
+function reveal(){
+  if (revealed) return; revealed = true;
+  $$('.js-after').forEach(e => e.classList.remove('hidden'));
+  try { localStorage.setItem(KEY, '1'); } catch(e){}
+  setupSticky();
+}
+const secs = Number(V.revelarEn) || 0;
+let already = false; try { already = localStorage.getItem(KEY) === '1'; } catch(e){}
+if (!hasVideo || secs <= 0 || already || /[?&]ver=todo/.test(location.search)){
+  reveal();
+} else {
+  $$('.js-after').forEach(e => e.classList.add('hidden'));
+  if (V.tipo === 'mp4'){
+    const vid = box.querySelector('video');
+    vid.addEventListener('timeupdate', () => { if (vid.currentTime >= secs) reveal(); });
+  } else if (V.tipo === 'vturb'){
+    // VTurb: usa el tiempo real del video si el player lo expone; si no, cuenta desde que carga la página
+    const t0 = Date.now();
+    const iv = setInterval(() => {
+      const p = box.querySelector('vturb-smartplayer');
+      let cur = null;
+      try { if (p && typeof p.getCurrentTime === 'function') cur = p.getCurrentTime(); } catch(e){}
+      try { if (cur == null && p && p.video && p.video.currentTime != null) cur = p.video.currentTime; } catch(e){}
+      if ((cur != null && cur >= secs) || (cur == null && Date.now() - t0 >= secs * 1000)){ clearInterval(iv); reveal(); }
+    }, 1000);
+  } else {
+    // YouTube / iframe: cuenta desde que carga la página
+    setTimeout(reveal, secs * 1000);
+  }
+}
+
+// testimonios en video
+if (Array.isArray(CONFIG.testimoniosVideo) && CONFIG.testimoniosVideo.length){
+  const g = $('#vtGrid');
+  g.innerHTML = CONFIG.testimoniosVideo.map(u => {
+    const t = /youtu/.test(u) ? 'youtube' : /\.mp4(\?|$)/.test(u) ? 'mp4' : 'iframe';
+    const h = embedHTML(t, u, ''); return h ? `<div class="vt">${h}</div>` : '';
+  }).join('');
+  if (g.innerHTML.trim()) g.classList.remove('hidden');
+}
+
+// visor por instrumento (páginas reales)
+const INST = [
+  ['🎸 Guitarra','img/guitarra.jpg','Guitarra','202 alabanzas','Acordes sobre la letra y los diagramas de cada acorde al inicio. Intro y partes marcadas.'],
+  ['🎹 Teclado','img/teclado.jpg','Teclado','202 alabanzas','Las notas de cada acorde para teclado y la letra con los cambios, lista para acompañar.'],
+  ['🎻 Violín','img/violin.jpg','Violín','45 partituras','Las melodías nota por nota, con el tono indicado, para tocar la línea principal.'],
+  ['🎼 Piano','img/piano.jpg','Piano','33 partituras y transcripciones','Transcripciones con la melodía y los acordes para acompañar en piano.'],
+  ['🎸 Bajo','img/bajo.jpg','Bajo','22 transcripciones','Tablaturas con la línea de bajo y los acordes de la canción.'],
+  ['📗 Edición México','img/sin-cejilla.jpg','Cancionero Edición México','122 cifras','Letra completa con acordes y una guía para cambiar los acordes con cejilla por opciones más fáciles.']
+];
+const tabs = $('#tabs');
+function show(i){
+  const it = INST[i];
+  $('#vImg').src = it[1]; $('#vTitle').textContent = it[2]; $('#vCount').textContent = it[3]; $('#vText').textContent = it[4];
+  $$('.tab').forEach((b, j) => b.classList.toggle('on', j === i));
+}
+tabs.innerHTML = INST.map((it, i) => `<button class="tab" type="button" data-i="${i}">${it[0]}</button>`).join('');
+tabs.addEventListener('click', e => { const b = e.target.closest('.tab'); if (b) show(+b.dataset.i); });
+show(0);
+
+// buscador
+const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const list = $('#list'), count = $('#count'), q = $('#q');
+function render(term){
+  const t = norm(term.trim());
+  const res = t ? SONGS.filter(s => norm(s[1]).includes(t)) : SONGS;
+  count.textContent = t ? `${res.length} resultado${res.length === 1 ? '' : 's'}` : `${SONGS.length} alabanzas en el cancionero`;
+  list.innerHTML = res.length ? res.map(s => `<div><i>${s[0]}</i>${s[1]}</div>`).join('') : '<div class="empty">No está en la lista. Prueba con otra palabra.</div>';
+}
+q.addEventListener('input', () => render(q.value));
+render('');
+
+// barra fija en el celular (fuera del hero y de la oferta)
+function setupSticky(){
+  if (stickySet) return; stickySet = true;
+  const sticky = $('#sticky'), vis = new Set();
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => e.isIntersecting ? vis.add(e.target) : vis.delete(e.target));
+    sticky.classList.toggle('show', vis.size === 0);
+  }, { threshold: 0.05 });
+  io.observe($('.hero')); io.observe($('#oferta'));
+}
+</script>
+</body>
+</html>
