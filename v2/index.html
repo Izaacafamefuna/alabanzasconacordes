@@ -500,10 +500,13 @@ const CONFIG = {
      revelarEn: segundo del video en que aparecen el botón y el resto de la página (el pitch).
                 0 = todo visible desde el inicio (recomendado hasta tener el video aprobado).        */
   vsl: {
-    tipo: "",
-    url: "",
-    poster: "",
+    tipo: "mp4",
+    url: "vsl/vsl-horizontal.mp4",
+    poster: "vsl/capa-horizontal.jpg",
     formato: "16:9",
+    // opcional: versión vertical para celular (pantallas de hasta 700px). "" = usa la de arriba
+    urlCelular: "vsl/vsl-vertical.mp4",
+    posterCelular: "vsl/capa-vertical.jpg",
     revelarEn: 0
   },
 
@@ -546,8 +549,10 @@ try {
     });
     hasVideo = true;
   } else if (['youtube','mp4','iframe'].includes(V.tipo) && V.url){
-    const html = embedHTML(V.tipo, V.url, V.poster);
-    if (html){ box.innerHTML = html; box.classList.toggle('f916', V.formato === '9:16'); box.classList.toggle('f169', V.formato !== '9:16'); hasVideo = true; }
+    const cel = V.urlCelular && window.matchMedia('(max-width:700px)').matches;
+    const html = embedHTML(V.tipo, cel ? V.urlCelular : V.url, cel ? (V.posterCelular || '') : V.poster);
+    const vert = cel || V.formato === '9:16';
+    if (html){ box.innerHTML = html; box.classList.toggle('f916', vert); box.classList.toggle('f169', !vert); hasVideo = true; }
   }
 } catch(e){ console.warn('VSL', e); hasVideo = false; }
 
