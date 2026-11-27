@@ -19,7 +19,7 @@
   .note{font-size:14px;border-top:1px solid var(--line);padding-top:16px;margin-top:6px}
   .hidden{display:none}
 </style>
-<!-- Meta Pixel: dataset "CIFRAS SITE" (OP 1). Purchase da assinatura Stripe. -->
+<!-- Meta Pixel: dataset "CIFRAS SITE" (OP 1). Só PageView; o Purchase vem do app Meta do Stripe. -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -60,18 +60,8 @@ if (CONFIG.downloadUrl){
   document.getElementById('pending').classList.remove('hidden');
 }
 
-// Purchase: só quando vem do Stripe (session_id) e uma vez por sessão de pagamento
-try {
-  const sid = new URLSearchParams(location.search).get('session_id');
-  if (sid && /^cs_/.test(sid) && window.fbq){
-    const k = 'purchase_sent_' + sid;
-    let sent = false; try { sent = localStorage.getItem(k) === '1'; } catch(e){}
-    if (!sent){
-      fbq('track', 'Purchase', {value: CONFIG.valor, currency: CONFIG.moeda, content_name: 'Worship Songbook UK', content_type: 'product'}, {eventID: sid});
-      try { localStorage.setItem(k, '1'); } catch(e){}
-    }
-  }
-} catch(e){}
+// Purchase NÃO é disparado aqui: o app Meta do Stripe já manda a compra pelo servidor.
+// Com os dois, a Meta contava 2 compras por venda (DEC-2026-11-26-lp-reino-unido).
 </script>
 </body>
 </html>
