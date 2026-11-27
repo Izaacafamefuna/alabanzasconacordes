@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Welcome – Worship Songbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0d0f14;--card:#1a1f2b;--line:#262c3a;--ink:#f4f1ea;--ink2:#b9b5ab;--gold:#e8b04a;--green:#22c55e;--green2:#16a34a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+  .box{max-width:560px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 26px;text-align:center}
+  .ok{width:64px;height:64px;border-radius:50%;background:rgba(34,197,94,.15);color:var(--green);display:grid;place-items:center;font-size:32px;margin:0 auto 18px}
+  h1{font-family:"Bricolage Grotesque",Inter,sans-serif;font-size:30px;line-height:1.1;margin-bottom:10px}
+  p{color:var(--ink2);margin-bottom:14px}
+  .btn{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:linear-gradient(180deg,var(--green),var(--green2));color:#fff;text-decoration:none;font-weight:800;font-size:18px;padding:16px 28px;border-radius:14px;margin:10px 0 18px;text-transform:uppercase}
+  .btn small{font-size:12px;font-weight:600;text-transform:none;opacity:.9}
+  .note{font-size:14px;border-top:1px solid var(--line);padding-top:16px;margin-top:6px}
+  .hidden{display:none}
+</style>
+<!-- Meta Pixel: dataset "CIFRAS SITE" (OP 1). Purchase da assinatura Stripe. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1541014001116109');
+fbq('track','PageView');
+</script>
+</head>
+<body>
+<div class="box">
+  <div class="ok">✓</div>
+  <h1>Welcome! Your membership is active.</h1>
+  <p>Thank you for joining. Your songbook is ready to download.</p>
+
+  <div id="dl" class="hidden">
+    <a class="btn" id="dlBtn" href="#">Download the songbook <small>PDF files · phone or print</small></a>
+  </div>
+  <p id="pending" class="hidden">Your download link is on its way to the email you used at checkout. If it hasn't arrived within a few hours, check your spam folder or reply to your receipt email.</p>
+
+  <p class="note">You'll receive your payment receipt by email from Stripe. Your membership is £4.99 a month and you can cancel anytime by replying to your receipt email.</p>
+</div>
+
+<script>
+/* ===== CONFIGURAR ===== */
+const CONFIG = {
+  downloadUrl: "",      // link do arquivo do produto (Google Drive, Dropbox…). "" = mostra o aviso de envio por e-mail
+  valor: 4.99,
+  moeda: "GBP"
+};
+/* ====================== */
+
+if (CONFIG.downloadUrl){
+  document.getElementById('dlBtn').href = CONFIG.downloadUrl;
+  document.getElementById('dl').classList.remove('hidden');
+} else {
+  document.getElementById('pending').classList.remove('hidden');
+}
+
+// Purchase: só quando vem do Stripe (session_id) e uma vez por sessão de pagamento
+try {
+  const sid = new URLSearchParams(location.search).get('session_id');
+  if (sid && /^cs_/.test(sid) && window.fbq){
+    const k = 'purchase_sent_' + sid;
+    let sent = false; try { sent = localStorage.getItem(k) === '1'; } catch(e){}
+    if (!sent){
+      fbq('track', 'Purchase', {value: CONFIG.valor, currency: CONFIG.moeda, content_name: 'Worship Songbook UK', content_type: 'product'}, {eventID: sid});
+      try { localStorage.setItem(k, '1'); } catch(e){}
+    }
+  }
+} catch(e){}
+</script>
+</body>
+</html>

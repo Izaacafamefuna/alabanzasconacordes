@@ -239,7 +239,7 @@ fbq('track','PageView');
 </head>
 <body>
 
-<div class="topbar">📩 Delivered to your inbox · Secure payment in <b>GBP</b> · 7-day guarantee</div>
+<div class="topbar">⚡ Instant access · <b>£4.99/month</b> · Cancel anytime</div>
 
 <!-- ================= HERO + VSL ================= -->
 <header class="hero">
@@ -272,7 +272,7 @@ fbq('track','PageView');
 
     <!-- Botón bajo el video: con CONFIG.vsl.revelarEn > 0 aparece en ese segundo del video -->
     <div class="hero-cta js-after">
-      <a class="btn pulse js-buy" href="#oferta">Get my songbook <small>One-time payment of £<span class="js-price"></span> · instant download</small></a>
+      <a class="btn pulse js-buy" href="#oferta">Get instant access <small>£<span class="js-price"></span>/month · cancel anytime</small></a>
       <p class="safe">🔒 Secure payment · PDF for your phone or to print</p>
     </div>
 
@@ -349,10 +349,10 @@ fbq('track','PageView');
 <section>
   <div class="wrap center">
     <span class="eyebrow">It's that easy</span>
-    <h2>In your inbox in 1 minute</h2>
+    <h2>Playing in 1 minute</h2>
     <div class="steps">
-      <div class="step"><div class="num">1</div><b>Pay securely</b><span>By bank transfer in pounds (GBP) from your banking app.</span></div>
-      <div class="step"><div class="num">2</div><b>Get the link</b><span>Once your payment is confirmed, the download link arrives by email.</span></div>
+      <div class="step"><div class="num">1</div><b>Join securely</b><span>Card, Apple Pay or Google Pay. £4.99 a month, cancel anytime.</span></div>
+      <div class="step"><div class="num">2</div><b>Download right away</b><span>After payment you go straight to your download page.</span></div>
       <div class="step"><div class="num">3</div><b>Open your folder and play</b><span>On your phone or printed, ready for the next rehearsal.</span></div>
     </div>
   </div>
@@ -380,7 +380,7 @@ fbq('track','PageView');
 <section class="offer" id="oferta">
   <div class="wrap center">
     <span class="eyebrow">Everything included</span>
-    <h2>One payment, yours forever</h2>
+    <h2>Everything, for £4.99 a month</h2>
     <div class="ocard">
       <div class="tag">Instant access</div>
       <div class="mini" aria-hidden="true">
@@ -395,11 +395,11 @@ fbq('track','PageView');
       </ul>
       <div class="price">
         <div class="old" id="oldPrice"></div>
-        <div class="now"><small>£</small><span id="price"></span></div>
-        <div class="once">One-time payment · no subscription</div>
+        <div class="now"><small>£</small><span id="price"></span><small>/mo</small></div>
+        <div class="once">per month · cancel anytime</div>
       </div>
-      <a class="btn pulse js-buy" href="#oferta">Buy now <small>Instant download to your inbox</small></a>
-      <div class="pay"><span>Bank transfer · GBP</span><span>🔒 Secure payment</span></div>
+      <a class="btn pulse js-buy" href="#oferta">Join now <small>Instant access after payment</small></a>
+      <div class="pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>🔒 Stripe</span></div>
     </div>
   </div>
 </section>
@@ -422,12 +422,12 @@ fbq('track','PageView');
   <div class="wrap">
     <div class="center"><h2>Frequently asked questions</h2></div>
     <div class="faq">
-      <details><summary>Is it a physical book or digital?</summary><p>It's digital, in PDF. You get it by email to download. You can print it if you like.</p></details>
+      <details><summary>Is it a physical book or digital?</summary><p>It's digital, in PDF. You download it right after payment. You can print it if you like.</p></details>
       <details><summary>Does it work if I play keyboard, not guitar?</summary><p>Yes. Every song has the chords above the lyrics, which work for guitar or keyboard. Plus, 202 of them come in separate guitar, keyboard and ukulele folders.</p></details>
       <details><summary>Do I need to know a lot about music?</summary><p>No. If you know the basic chords, you can follow the charts. The violin, piano and flute sheet music is for people who already read music.</p></details>
-      <details><summary>How do I receive it?</summary><p>Once your payment is confirmed, the songbook arrives by email (a ZIP file with all the folders). If you don't see it within a couple of minutes, check your spam folder or email us.</p></details>
-      <details><summary>Is it a monthly payment?</summary><p>No. It's a one-time payment and the songbook is yours forever.</p></details>
-      <details><summary>What if I don't like it?</summary><p>You have a 7-day guarantee. Email us and we'll refund you.</p></details>
+      <details><summary>How do I receive it?</summary><p>Right after payment you're taken to your download page. You also get a payment receipt by email.</p></details>
+      <details><summary>Is it a monthly payment?</summary><p>Yes. It's a membership of £4.99 a month, charged to your card each month. You can cancel anytime and you won't be charged again.</p></details>
+      <details><summary>What if I don't like it?</summary><p>You have a 7-day guarantee on your first payment. Email us and we'll refund you and cancel your membership.</p></details>
     </div>
     <div class="center" style="margin-top:30px"><a class="btn btn-wide js-buy" href="#oferta">Get my songbook</a></div>
   </div>
@@ -441,8 +441,8 @@ fbq('track','PageView');
 </footer>
 
 <div class="sticky js-after" id="sticky">
-  <div class="p">One-time payment<b>£<span class="js-price"></span></b></div>
-  <a class="btn js-buy" href="#oferta">Buy now</a>
+  <div class="p">Monthly · cancel anytime<b>£<span class="js-price"></span>/mo</b></div>
+  <a class="btn js-buy" href="#oferta">Join now</a>
 </div>
 
 <script>
@@ -450,10 +450,10 @@ fbq('track','PageView');
    CONFIGURAR AQUÍ  (no hace falta tocar nada más de la página)
    ===================================================================== */
 const CONFIG = {
-  precio: "6.99",
+  precio: "4.99",
   precioAntes: "",          // precio tachado: solo si fue un precio real ("" = no se muestra)
   moneda: "GBP",
-  checkoutUrl: "https://xpag.global/pay/dj7hUD84",   // XPag payment link (UK bank transfer, GBP)
+  checkoutUrl: "https://buy.stripe.com/3cI28qag6c738ru96t5sA02",   // Stripe Payment Link (£4.99/month subscription)
 
   /* ---------- VSL ----------
      tipo:
@@ -493,7 +493,7 @@ $('#oldPrice').textContent = CONFIG.precioAntes ? '£' + CONFIG.precioAntes : ''
 function checkoutHref(){
   try {
     const u = new URL(CONFIG.checkoutUrl), q = new URLSearchParams(location.search);
-    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','src','sck'].forEach(k => { if (q.get(k)) u.searchParams.set(k, q.get(k)); });
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k => { if (q.get(k)) u.searchParams.set(k, q.get(k)); });
     return u.toString();
   } catch(e){ return CONFIG.checkoutUrl; }
 }
